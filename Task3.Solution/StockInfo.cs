@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task2.Solution
+namespace Task3.Solution
 {
-    public interface IRandomDataGenerator
+    public class StockInfo
     {
-        byte[] GenerateFileContent(int contentLength);
+        public int USD { get; set; }
+        public int Euro { get; set; }
     }
 }

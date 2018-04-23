@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Task2.Solution
 {
-    public class RandomBytesDataGenerator : IRandomDataGenerator
+    public class RandomBytesDataGenerator : RandomDataGenerator
     {
-        public byte[] GenerateFileContent(int contentLength)
+        public override string WorkingDirectory => "Files with random bytes";
+
+        public override string FileExtension => ".bytes";
+
+        public override byte[] GenerateFileContent(int contentLength)
         {
             var random = new Random();
 

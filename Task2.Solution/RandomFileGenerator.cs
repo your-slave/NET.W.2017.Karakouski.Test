@@ -9,13 +9,9 @@ namespace Task2.Solution
 {
     public class RandomFileGenerator
     {
-        public string WorkingDirectory => "Files with random chars";
+        private readonly RandomDataGenerator randomDataGenerator;
 
-        public string FileExtension => ".txt";
-
-        private readonly IRandomDataGenerator randomDataGenerator;
-
-        public RandomFileGenerator(IRandomDataGenerator randomDataGenerator)
+        public RandomFileGenerator(RandomDataGenerator randomDataGenerator)
         {
             this.randomDataGenerator = randomDataGenerator;
         }
@@ -26,7 +22,7 @@ namespace Task2.Solution
             {
                 var generatedFileContent = randomDataGenerator.GenerateFileContent(contentLength);
 
-                var generatedFileName = $"{Guid.NewGuid()}{this.FileExtension}";
+                var generatedFileName = $"{Guid.NewGuid()}{randomDataGenerator.FileExtension}";
 
                 this.WriteBytesToFile(generatedFileName, generatedFileContent);
             }
@@ -34,12 +30,12 @@ namespace Task2.Solution
 
         private void WriteBytesToFile(string fileName, byte[] content)
         {
-            if (!Directory.Exists(WorkingDirectory))
+            if (!Directory.Exists(randomDataGenerator.WorkingDirectory))
             {
-                Directory.CreateDirectory(WorkingDirectory);
+                Directory.CreateDirectory(randomDataGenerator.WorkingDirectory);
             }
 
-            File.WriteAllBytes($"{WorkingDirectory}//{fileName}", content);
+            File.WriteAllBytes($"{randomDataGenerator.WorkingDirectory}//{fileName}", content);
         }
     }
 }

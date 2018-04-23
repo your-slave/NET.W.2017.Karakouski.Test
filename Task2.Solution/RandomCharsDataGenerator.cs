@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Task2.Solution
 {
-    public class RandomCharsDataGenerator : IRandomDataGenerator
+    public class RandomCharsDataGenerator : RandomDataGenerator
     {
-        public byte[] GenerateFileContent(int contentLength)
+        public override string WorkingDirectory => "Files with random chars";
+
+        public override string FileExtension => ".txt";
+
+        public override byte[] GenerateFileContent(int contentLength)
         {
             var generatedString = this.RandomString(contentLength);
 

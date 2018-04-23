@@ -11,8 +11,8 @@ namespace Task2.Tests
     {
         static void Main(string[] args)
         {
-            IRandomDataGenerator randomDataChar = new RandomCharsDataGenerator();
-            IRandomDataGenerator randomDataByte = new RandomBytesDataGenerator();
+            RandomDataGenerator randomDataChar = new RandomCharsDataGenerator();
+            RandomDataGenerator randomDataByte = new RandomBytesDataGenerator();
             RandomFileGenerator randomFileChar = new RandomFileGenerator(randomDataChar);
             randomFileChar.GenerateFiles(5, 10);
             RandomFileGenerator randomFileByte = new RandomFileGenerator(randomDataByte);
