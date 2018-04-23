@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Task5
 {
+    public delegate string Converter(DocumentPart documentPart);
     public class Document
     {
         private List<DocumentPart> parts;
@@ -16,40 +17,17 @@ namespace Task5
             this.parts = new List<DocumentPart>(parts);
         }
 
-        public string ToHtml()
+        public string Convert(Converter converter)
         {
             string output = string.Empty;
 
             foreach (DocumentPart part in this.parts)
             {
-                output += $"{part.ToHtml()}\n";
+                output += $"{converter(part)}\n";
             }
 
             return output;
         }
 
-        public string ToPlainText()
-        {
-            string output = string.Empty;
-
-            foreach (DocumentPart part in this.parts)
-            {
-                output += $"{part.ToPlainText()}\n";
-            }
-
-            return output;
-        }
-
-        public string ToLaTeX()
-        {
-            string output = string.Empty;
-
-            foreach (DocumentPart part in this.parts)
-            {
-                output += $"{part.ToLaTeX()}\n";
-            }
-
-            return output;
-        }
     }
 }
