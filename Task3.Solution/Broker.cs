@@ -8,20 +8,19 @@ namespace Task3.Solution
 {
     public class Broker
     {
-        private IObservable stock;
-
         public string Name { get; set; }
+        private Stock stock;
 
-        public Broker(string name, IObservable observable)
+        public Broker(string name, Stock stock)
         {
             this.Name = name;
-            stock = observable;
-            stock.Register(this);
+            this.stock = stock;
+            stock.StockInfoChanged += Update;
         }
 
-        public void Update(object info)
+        public void Update(object sender, StockInfoChangedArgs info)
         {
-            StockInfo sInfo = (StockInfo)info;
+            StockInfoChangedArgs sInfo = info;
 
             if (sInfo.USD > 30)
                 Console.WriteLine("Брокер {0} продает доллары;  Курс доллара: {1}", this.Name, sInfo.USD);
@@ -31,8 +30,7 @@ namespace Task3.Solution
 
         public void StopTrade()
         {
-            stock.Unregister(this);
-            stock = null;
+            stock.StockInfoChanged -= Update;
         }
     }
 }
