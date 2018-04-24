@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1.Solution
+namespace Task1
 {
-    public class SqlRepository : IRepository
+    public interface IPasswordChecker
     {
-        public void Create(string password) { }
+        bool Check(string password);
     }
 }
